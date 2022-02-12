@@ -1,3 +1,9 @@
+.table-response{
+  grid-template-columns: 200px 1000px;
+  column-gap: 30px;
+  display: grid;
+}
+
 .layout-font {
     margin-top: 30px;
     margin-bottom: 30px;
@@ -65,6 +71,7 @@
     margin-left: 200px;
     margin-right: 200px;
     margin-top: 20px;
+    width: 900px;
   }
 
   .clear-btn-queue {
