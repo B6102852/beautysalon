@@ -49,12 +49,12 @@
     padding-bottom: 2px;
     text-decoration: none;
     display: inline-block;
-    border-radius: 18px;
+    border-radius: 12px;
   }
   
   .login-btn:hover, .login-btn:active {
     background-color: #9dbcff;
     border: 2px solid white;
     color: black;
-    border-radius: 18px;
+    border-radius: 12px;
   }

@@ -1,12 +1,12 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyAJlrywv8YhiBcqi1YLrvGiIJZEafk6_bI",
-    authDomain: "beautysalon-86e3a.firebaseapp.com",
-    databaseURL: "https://beautysalon-86e3a-default-rtdb.firebaseio.com",
-    projectId: "beautysalon-86e3a",
-    storageBucket: "beautysalon-86e3a.appspot.com",
-    messagingSenderId: "333055924425",
-    appId: "1:333055924425:web:a959731d96866ed2e71518",
-    measurementId: "G-KPY4ZJE1X4"
+  apiKey: "AIzaSyAqtUdY7qm17D4xs4ip9QQZ9VhrZvvtuFQ",
+  authDomain: "beautysalon-62956.firebaseapp.com",
+  databaseURL: "https://beautysalon-62956-default-rtdb.firebaseio.com",
+  projectId: "beautysalon-62956",
+  storageBucket: "beautysalon-62956.appspot.com",
+  messagingSenderId: "918783430228",
+  appId: "1:918783430228:web:03ce6cc4523550f5b127c1",
+  measurementId: "G-3J0HV4YLD9"
   };
 
   export default firebaseConfig;

@@ -47,7 +47,7 @@ function QueueResponse () {
                         id="date"
                         label="ค้นจากวันที่"
                         type="date"
-                        defaultValue="2017-05-24"
+                        //defaultValue="2017-05-24"
                         className={classes.textField}
                         InputLabelProps={{
                         shrink: true,
