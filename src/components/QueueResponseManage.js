@@ -92,44 +92,10 @@ function QueueResponseManage() {
     const open2 = Boolean(anchorE2);
     const open3 = Boolean(anchorE3);
     const id1 = open1 ? 'simple-popover' : undefined;
+    const id2 = open2 ? 'simple-popover' : undefined;
+    const id3 = open3 ? 'simple-popover' : undefined;
     const [holdThisRow, setHoldThisRow] = React.useState();
     const [holdThisIndex, setHoldThisIndex] = React.useState();
-
-    const handleClose1 = () => {
-        setAnchorEl(null);
-    };
-
-    const handleClose2 = () => {
-        setAnchorE2(null);
-    };
-
-    const handleClose3 = () => {
-        setAnchorE3(null);
-    };
-
-    const ClickFree = (event, rowID, index) => {
-        setAnchorEl(event.currentTarget);
-        setHoldThisRow(rowID); 
-        setHoldThisIndex(index);
-    };
-    const confirmFree = () => {
-        const queueRef = firebase.database().ref('Queue').child(holdThisRow);
-        queueRef.update({
-            status:'ว่าง',
-        });
-        handleClose1();
-    };
-
-    const ClickBusy = (event, rowID, index) => {
-        setHoldThisRow(rowID); setHoldThisIndex(index);
-        setAnchorE2(event.currentTarget);
-    };
-
-    const ClickAdJourn = (event, rowID, index) => {
-        setHoldThisRow(rowID); setHoldThisIndex(index);
-        setAnchorE3(event.currentTarget);
-    };
-
 
     const nameCustomerOnChange = e => {
         setNameCustomer(e.target.value);
@@ -157,6 +123,7 @@ function QueueResponseManage() {
             day:day,
             time:time,
             status:'รอตอบกลับ',
+            adjourn:null,
         };
         try {
             queueRef.push(queue);
@@ -164,6 +131,57 @@ function QueueResponseManage() {
         } catch (error) {
             console.error();
         }
+    };
+
+    const handleClose1 = () => {
+        setAnchorEl(null);
+    };
+
+    const handleClose2 = () => {
+        setAnchorE2(null);
+    };
+
+    const handleClose3 = () => {
+        setAnchorE3(null);
+    };
+
+    const ClickFree = (event, rowID, index) => {
+        setAnchorEl(event.currentTarget);
+        setHoldThisRow(rowID); 
+        setHoldThisIndex(index);
+    };
+    const confirmFree = () => {
+        const queueRef = firebase.database().ref('Queue').child(holdThisRow);
+        queueRef.update({
+            status:'ว่าง',
+        });
+        handleClose1();
+    };
+
+    const ClickBusy = (event, rowID, index) => {
+        setAnchorE2(event.currentTarget);
+        setHoldThisRow(rowID); 
+        setHoldThisIndex(index);
+    };
+    const confirmBusy = () => {
+        const queueRef = firebase.database().ref('Queue').child(holdThisRow);
+        queueRef.update({
+            status:'ไม่ว่าง',
+        });
+        handleClose2();
+    };
+
+    const ClickAdJourn = (event, rowID, index) => {
+        setAnchorE3(event.currentTarget);
+        setHoldThisRow(rowID); 
+        setHoldThisIndex(index);
+    };
+    const confirmAdJourn = () => {
+        const queueRef = firebase.database().ref('Queue').child(holdThisRow);
+        queueRef.update({
+            status:'ไม่ว่าง',
+        });
+        handleClose3();
     };
 
     function clearQueue() {
@@ -257,7 +275,7 @@ function QueueResponseManage() {
                     <Link className='clear-btn-queue'>ดูทั้งหมด</Link>
                 </div>    
                 <div className="layout-tb-queue">
-                    <TableContainer component={Paper} style={{ height: 485, width: '100%' }}>
+                    <TableContainer component={Paper} style={{ height: 370, width: '100%' }}>
                     <Table className={classes.table} aria-label="customized table" stickyHeader aria-label="sticky table">
                         <TableHead>
                         <TableRow>
@@ -291,18 +309,61 @@ function QueueResponseManage() {
                                         horizontal: 'left', }}  
                                 >
                                     <Typography sx={{ p: 2 }}>
-                                        ตอบรับคิว&nbsp;"ว่าง"&nbsp;แถวที่ {holdThisIndex+1} ใช่หรือไม่ ?<br/>
+                                        ยืนยันคิว&nbsp;<b>"ว่าง"</b>&nbsp;ให้คิวแถวที่ {holdThisIndex+1} ใช่หรือไม่ ?<br/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <Link className='update-btn' onClick={confirmFree}>ใช่</Link>
-                                        <Link className='delete-btn' onClick={handleClose1}>ยกเลิก</Link>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <Link className='confirm-free-btn' onClick={confirmFree}>ยืนยัน</Link>
+                                        <Link className='cancle-btn' onClick={handleClose1}>ยกเลิก</Link>
                                     </Typography>
                                 </Popover>
-                                <Link className='update-btn' onClick={(event) => {
+                                <Popover id={id2}
+                                        open={open2}
+                                        anchorEl={anchorE2}
+                                        onClose={handleClose2}
+                                        anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'left', }}  
+                                >
+                                    <Typography sx={{ p: 2 }}>
+                                        ยืนยันคิว&nbsp;<b>"ไม่ว่าง"</b>&nbsp;ให้คิวแถวที่ {holdThisIndex+1} ใช่หรือไม่ ?<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <Link className='confirm-busy-btn' onClick={confirmBusy}>ยืนยัน</Link>
+                                        <Link className='cancle-btn' onClick={handleClose2}>ยกเลิก</Link>
+                                    </Typography>
+                                </Popover>
+                                <Popover id={id3}
+                                        open={open3}
+                                        anchorEl={anchorE3}
+                                        onClose={handleClose3}
+                                        anchorOrigin={{
+                                        vertical: 'bottom',
+                                        horizontal: 'left', }}  
+                                >
+                                    <Typography sx={{ p: 2 }}>
+                                        เลื่อนนัดคิวแถวที่ {holdThisIndex+1}<br/>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <TextField
+                                            className='text-input-emp-ser'
+                                            type='date'
+                                            placeholder='เลื่อนนัด'
+                                            //value={day}
+                                            //onChange={dayOnChange}
+                                            InputLabelProps={{
+                                                shrink: true,
+                                            }}
+                                        />
+                                        <Link className='confirm-free-btn' /*onClick={confirmBusy}*/>ยืนยัน</Link>
+                                        <Link className='cancle-btn' /*onClick={handleClose2}*/>ยกเลิก</Link>
+                                    </Typography>
+                                </Popover>
+                                <Link className='free-btn' onClick={(event) => {
                                     ClickFree(event,row.id,index);
                                     }}>ว่าง</Link>
                                 <Link className='delete-btn' onClick={(event) => {
                                     ClickBusy(event,row.id,index)}}>ไม่ว่าง</Link>    
-                                <Link className='delete-btn' onClick={(event) => {
+                                <Link className='update-btn' onClick={(event) => {
                                     ClickAdJourn(event,row.id,index)}}>เลื่อนนัด</Link>                  
                             </StyledTableCell>
                             </StyledTableRow>

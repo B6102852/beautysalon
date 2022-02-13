@@ -96,5 +96,96 @@
     border-radius: 3px;
   }
 
+  .free-btn {
+    background-color: #ffffff00;
+    border: 1px solid #15b83d;
+    color: #15b83d;
+    width: 50px;
+    height: 21px;
+    padding: 3px 0px;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 2px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    margin-left: 7px;
+  }
+  
+  .free-btn:hover, .free-btn:active {
+    background-color: #15b83d;
+    border: 1px solid #15b83d;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .confirm-free-btn {
+    background-color: #15b83d;
+    border: 1px solid #15b83d;
+    color: white;
+    width: 50px;
+    height: 21px;
+    padding: 3px 0px;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 2px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    margin-left: 7px;
+  }
+  
+  .confirm-free-btn:hover, .confirm-free-btn:active {
+    background-color: #15b83d;
+    border: 1px solid black;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .confirm-busy-btn {
+    background-color: #fd1717;
+    border: 1px solid #fd1717;
+    color: white;
+    width: 50px;
+    height: 21px;
+    padding: 3px 0px;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 2px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    margin-left: 7px;
+  }
+  
+  .confirm-busy-btn:hover, .confirm-busy-btn:active {
+    background-color: #fd1717;
+    border: 1px solid black;
+    color: white;
+    border-radius: 5px;
+  }
+
+  .cancle-btn {
+    background-color: #fd171700;
+    border: 1px solid #fd1717;
+    color: #fd1717;
+    width: 50px;
+    height: 21px;
+    padding: 3px 0px;
+    font-size: 14px;
+    text-align: center;
+    padding-bottom: 2px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    margin-left: 7px;
+  }
+  
+  .cancle-btn:hover, .cancle-btn:active {
+    background-color: #fd17173a;
+    border: 1px solid #fd1717;
+    color: #fd1717;
+    border-radius: 5px;
+  }
   
 
